@@ -13,7 +13,7 @@ from utils import (
 
 # Constants
 T_START = 2
-T_END = 13
+T_END = 12
 LABEL = "default.payment.next.month"
 PATH_DATASET = "../dataset/"
 PATH_INFERENCE_DATA = "../data/uci_credit_drifted_inference.csv"
@@ -47,7 +47,7 @@ with st.sidebar:
 
     t_end = st.slider('Time', T_START, T_END, value=10)
     
-df_metrics_show = metrics.iloc[0:t_end]
+df_metrics_show = metrics.iloc[0:t_end+1]
 df_metrics_show.index = df_metrics_show.index + 1
 
 # Drift Detection
@@ -76,12 +76,12 @@ if show_drift_detection:
         # Distribution of Features
         col1, col2 = st.columns([3,1])
         with col1:
-            t_feature_show = st.selectbox("timestep: ", options=["-"] + list(np.arange(1, T_END+1)))
+            t_feature_show = st.selectbox("timestep: ", options=["-"] + list(np.arange(T_START, T_END+1)))
         with col2:
             feature_show = st.selectbox("feature: ", ["-"] + features)
 
         if t_feature_show != "-" and feature_show != "-":
-            axes = detectors['ks_features'][t_feature_show].plot_distribution_feature(name_feature=feature_show)
+            axes = detectors['ks_features'][t_feature_show - T_START].plot_distribution_feature(name_feature=feature_show)
             st.pyplot(axes.figure)
 
     # Domain Classifier Drift
@@ -100,13 +100,13 @@ if show_drift_detection:
 
         
         # Distribution of Features
-        t_feature_show = st.selectbox("timestep: ", options=["-"] + list(np.arange(1, T_END+1)), key="checkbox_dc_t")
+        t_feature_show = st.selectbox("timestep: ", options=["-"] + list(np.arange(T_START, T_END+1)), key="checkbox_dc_t")
         if t_feature_show != "-" :
-            ax = detectors['domain_classifier_features'][t_feature_show].plot_feature_drift_scores()
+            ax = detectors['domain_classifier_features'][t_feature_show - T_START].plot_feature_drift_scores()
             st.pyplot(ax.figure)
         feature_show = st.selectbox("feature: ", ["-"] + features, key="checkbox_df_feature")
         if t_feature_show != "-" and feature_show != "-":
-            axes = detectors['domain_classifier_features'][t_feature_show].plot_distribution_feature(name_feature=feature_show)
+            axes = detectors['domain_classifier_features'][t_feature_show - T_START].plot_distribution_feature(name_feature=feature_show)
             st.pyplot(axes.figure)
 
     # Predictions Drift
@@ -124,9 +124,9 @@ if show_drift_detection:
         st.line_chart(df_metrics_show, y="prediction_drift_ks_score", use_container_width=True)
 
         # Predictions Distribution
-        t_feature_show = st.selectbox("timestep: ", options=["-"] + list(np.arange(1, T_END+1)), key="checkbox_predictions_t")
+        t_feature_show = st.selectbox("timestep: ", options=["-"] + list(np.arange(T_START, T_END+1)), key="checkbox_predictions_t")
         if t_feature_show != "-" :
-            axes = detectors['ks_predictions'][t_feature_show].plot_distribution_feature(name_feature="prediction")
+            axes = detectors['ks_predictions'][t_feature_show - T_START].plot_distribution_feature(name_feature="prediction")
             st.pyplot(axes.figure)
 
 

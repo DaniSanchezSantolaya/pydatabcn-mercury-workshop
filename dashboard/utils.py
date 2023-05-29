@@ -40,7 +40,7 @@ def drift_detection(df_source, df_inference, features, drift_detector_type="ks")
         drift_detector = KSDrift(X_source, X_inference, features=features, p_val=0.01)
     elif drift_detector_type.lower() == "domain_classifier":
         drift_detector = DomainClassifierDrift(
-            X_source, X_inference, features=features, p_val=0.05, n_runs=10
+            X_source, X_inference, features=features, p_val=0.05, n_runs=3
         )
     else:
         raise ValueError("Invalid drift_detector_type. Select: 'ks' or 'domain_classifier'")
