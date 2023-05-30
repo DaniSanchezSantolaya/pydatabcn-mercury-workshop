@@ -7,7 +7,7 @@ In this workshop, we will introduce mercury.robust and mercury.monitoring. With 
 We will be using mercury.robust and mercury.monitoring. You can install them using pip
 
 ```
-pip install mercury-robust mercury-explainability
+pip install mercury-robust mercury-monitoring
 ```
 
 We will also use other data science libraries like scikit-learn, pandas or numpy.
