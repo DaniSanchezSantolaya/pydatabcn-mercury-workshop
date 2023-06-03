@@ -36,6 +36,6 @@ Notebook "3_model_inference_and_monitoring.ipynb" contains the code to perform d
 
 The "dashboard" folder contains a streamlit application which contains an example of dashboard to show data drift and performance estimation over time. The notebooks must be executed previously in order to show the data in the dashboard. Then, the streamlit app can be run executing (streamlit must be installed first with `pip install streamlit`):
 ```
-cd app
+cd dashboard
 python -m streamlit run app.py
 ```
