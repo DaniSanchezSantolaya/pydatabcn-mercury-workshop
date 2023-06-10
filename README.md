@@ -1,6 +1,8 @@
 # Introduction
 
-In this workshop, we will introduce mercury.robust and mercury.monitoring. With mercury.robust we can pass tests in our datasets and trained models to detect undesirable conditions such as high level of noise in the labels, label leaking in the features of the dataset, or model excessive sensitivity to drift in certain features. Mercury.monitoring contains components that can help us to detect data drift in our inference data and estimate the performance of our model when real labels are not yet available.
+In this workshop, we will introduce [mercury.robust](https://bbva.github.io/mercury-robust/) and [mercury.monitoring](https://bbva.github.io/mercury-monitoring/). With mercury.robust we can pass tests in our datasets and trained models to detect undesirable conditions such as high level of noise in the labels, label leaking in the features of the dataset, or model excessive sensitivity to drift in certain features. Mercury.monitoring contains components that can help us to detect data drift in our inference data and estimate the performance of our model when real labels are not yet available.
+
+[Presentation](https://drive.google.com/file/d/1hNNQX-za4VkiPozFI3XxB64-Yydcgmsp/view?usp=sharing)
 
 ## Requirements
 
